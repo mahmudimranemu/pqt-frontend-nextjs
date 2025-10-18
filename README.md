@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Property Quest Turkey — Frontend
 
-## Getting Started
+This repository contains the frontend for Property Quest Turkey, a Next.js-based web application that lists and showcases properties in Turkey. The app is built with the Next.js App Router (TypeScript), and is intended to be served as a modern React/SSR frontend that consumes an API (separate backend repository).
 
-First, run the development server:
+This README covers local development, build and deployment tips, environment variables, and contribution guidelines specific to the frontend.
 
-```bash
-npm run dev
+## Quick start (Windows / PowerShell)
+
+1. Install dependencies (pnpm is recommended):
+
+```powershell
+pnpm install
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```powershell
+pnpm dev
+# or
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Open http://localhost:3000 in your browser. The app uses the `app/` directory and supports fast refresh while you edit files.
 
-## Learn More
+## Build and production preview
 
-To learn more about Next.js, take a look at the following resources:
+```powershell
+pnpm build
+pnpm start
+# or for npm
+npm run build; npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This will build the Next.js app and start the production server for a local preview.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment variables
 
-## Deploy on Vercel
+The frontend expects several environment variables for connecting to the backend API and third-party services. Create a `.env.local` file in the project root (never commit secrets).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Example `.env.local` (values should be provided by the backend or infrastructure team):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+NEXT_PUBLIC_API_URL=https://api.propertyquestturkey.example
+NEXT_PUBLIC_MAPS_KEY=your-maps-api-key
+NEXT_PUBLIC_ANALYTICS_ID=your-analytics-id
+```
+
+- Variables prefixed with `NEXT_PUBLIC_` are exposed to the browser. Keep private keys out of the frontend repo.
+
+## Project structure
+
+- `app/` - Next.js App Router pages and layouts (server and client components)
+- `public/` - static files and assets
+- `styles/` or `globals.css` - global styles
+- `next.config.js/ts` - Next.js configuration
+
+Adjust structure as the project grows (components, hooks, lib, services, types).
+
+## Linting & Formatting
+
+This project includes TypeScript and likely ESLint/Prettier configs. Run the linters before committing:
+
+```powershell
+pnpm lint
+pnpm format
+# or using npm scripts
+npm run lint
+npm run format
+```
+
+If lint scripts are not present, check `package.json` for available scripts and adapt the commands.
+
+## Tests
+
+If tests exist, run them with the configured test runner (Jest / Vitest / React Testing Library):
+
+```powershell
+pnpm test
+```
+
+Add unit and integration tests for components and page behavior where possible.
+
+## Deployment
+
+Recommended platforms: Vercel (native Next.js support), Netlify, or any platform that supports Node.js servers. For static-exportable parts you can use S3/CloudFront.
+
+Vercel is the simplest option:
+
+1. Push the repository to GitHub (or GitLab/Bitbucket).
+2. Import the repo in Vercel and set the environment variables in the Vercel dashboard.
+3. Set the build command to `pnpm build` (or `npm run build`) and the output directory to the default Next.js output.
+
+For Docker deployments, build the app and use a lightweight Node image or the Next.js recommended base.
+
+## Contributing
+
+- Fork the repo and create feature branches for changes.
+- Follow the existing code style. Run lint/format before creating a PR.
+- Add tests for new features and bug fixes.
+- Document any environment variables or infra requirements in this README.
+
+## Troubleshooting
+
+- If you see TypeScript or build errors, run `pnpm build` locally to reproduce.
+- Ensure the backend API URL in `.env.local` is reachable and CORS allows requests from the frontend origin.
+- Check browser console for runtime errors and the server terminal for build-time logs.
+
+## License & Acknowledgements
+
+Include licensing information here if applicable, and acknowledge any libraries or assets used.
+
+---
+
+If you want, I can also:
+
+- Add a short contributing.md or CODE_OF_CONDUCT.
+- Create a `.env.example` with the variable names (no secrets).
+- Add basic CI workflow for linting and build on push.
+
+If you'd like any of those, tell me which and I'll add them.
