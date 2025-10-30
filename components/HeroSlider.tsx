@@ -13,12 +13,14 @@ export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(
-      () => setCurrent((prev) => (prev + 1) % slides.length),
-      5000
-    );
-    return () => clearInterval(interval);
-  }, []);
+    const intervalDuration = 6000;
+
+    const slideInterval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, intervalDuration);
+
+    return () => clearInterval(slideInterval);
+  }, [slides.length]);
 
   return (
     <div className='relative w-full h-screen overflow-hidden'>
@@ -29,13 +31,27 @@ export default function HeroSlider() {
           alt='property background'
           fill
           priority={index === 0}
-          className={`object-cover transition-opacity duration-1000 ${
-            index === current ? "opacity-100" : "opacity-0"
-          }`}
+          className={`
+            absolute inset-0 block
+            object-cover 
+            ken-burns-image 
+            
+            ${
+              index === current ? "opacity-100 animate-ken-burns" : "opacity-0" // Inactive: Just fades out. It relies on the animation's 'forwards' state and the transition from the previous slide.
+            }
+          `}
+          // CRUCIAL ADDITION: We explicitly define the scale for the non-current slides
+          style={{
+            transform:
+              index !== current ? "scale(1.15) translateY(-5%)" : undefined,
+            transitionDuration: "1500ms", // Match fade duration for smooth scale reset
+            transitionProperty:
+              index !== current ? "opacity, transform" : "opacity",
+          }}
         />
       ))}
 
-      <div className='absolute inset-0 bg-black/10'></div>
+      {/* ... (rest of the component) ... */}
     </div>
   );
 }

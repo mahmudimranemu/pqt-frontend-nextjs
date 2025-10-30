@@ -41,6 +41,12 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-primary: #e20a17;
+  --color-secondary: #003684;
+  --color-dark-red: #8c0008;
+  --color-dark-blue: #00265c;
+  --color-heading: #393939;
+  --color-text: #404040;
 }
 
 body {
@@ -125,4 +131,29 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Define Keyframes (Keep this the same) */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  /* Ensure the 100% state is where the image should be when it starts fading out */
+  100% {
+    transform: scale(1.15) translateY(-5%);
+  }
+}
+
+/* Define the utility class for the animation duration */
+.animate-ken-burns {
+  /* Use forwards to keep the final state (scale 1.15) applied */
+  animation: kenBurns 6s ease-out forwards;
+}
+
+/* REFINED: Only manage opacity for the cross-fade */
+.ken-burns-image {
+  /* Only transition opacity, and let the animation handle the transform */
+  transition: opacity 1500ms ease-in-out;
+  /* Add a default transform to handle the reset gracefully */
+  transform: scale(1);
 }

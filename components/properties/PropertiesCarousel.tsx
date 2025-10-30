@@ -1,5 +1,5 @@
 import PropertyCard from "./PropertyCard";
-import { fetchData } from "@/lib/api";
+import { fetchProperties } from "@/lib/wpapi";
 import {
   Carousel,
   CarouselContent,
@@ -8,23 +8,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-interface Property {
-  id: number;
-  title: string;
-  description: string;
-  type: string;
-  bedrooms: number;
-  bathrooms: number;
-  area: string;
-  price: number;
-  location: string;
-  featuredImage: string;
-}
-
 export default async function PropertiesCarousel() {
-  const data = await fetchData<Property[]>(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/properties`
-  );
+  const properties = await fetchProperties();
 
   return (
     <div className='flex w-7xl justify-between gap-4'>
@@ -34,7 +19,7 @@ export default async function PropertiesCarousel() {
         }}
         className='w-full'>
         <CarouselContent>
-          {data.map((property: Property) => (
+          {properties.map((property) => (
             <CarouselItem
               key={property.id}
               className='md:basis-1/2 lg:basis-1/3'>

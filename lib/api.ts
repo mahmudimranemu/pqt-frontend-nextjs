@@ -1,4 +1,3 @@
-// lib/api.ts
 export async function fetchData<T>(url: string): Promise<T> {
   try {
     const res = await fetch(url, { cache: "no-store" });

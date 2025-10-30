@@ -46,7 +46,7 @@ export default function HomeCTAForm() {
 
         <Button
           size='lg'
-          className='bg-red-600 hover:bg-red-700 text-white h-12'>
+          className='bg-red-600 hover:bg-red-700 text-white h-12 cursor-pointer'>
           Contact
         </Button>
       </div>
