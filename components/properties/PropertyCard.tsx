@@ -1,6 +1,5 @@
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -18,7 +17,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Property } from "@/types/property";
-import { trim } from "zod";
 
 interface PropertyCardProps {
   property: Property;
@@ -114,7 +112,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
       </CardContent>
       <CardFooter className='pb-4 flex justify-between'>
         <p className='text-red-600 font-semibold'>
-          ${formatPrice(property.property_meta?.fave_property_price || "N/A")}
+          ${property.property_meta?.fave_property_price}
         </p>
         <Link
           href='#'

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
@@ -47,10 +48,12 @@ export function LatestNewsSection() {
                   <span className='font-display-2-semi-bold font-[number:var(--display-2-semi-bold-font-weight)] text-neutral-colors600 text-[length:var(--display-2-semi-bold-font-size)] tracking-[var(--display-2-semi-bold-letter-spacing)] leading-[var(--display-2-semi-bold-line-height)] [font-style:var(--display-2-semi-bold-font-style)]'>
                     Category
                   </span>
-                  <img
+                  <Image
                     className='w-[22.27px] h-px'
                     alt='Blog card details divider'
                     src='/blog-card-details-divider.svg'
+                    width={22}
+                    height={1}
                   />
                   <span className='font-display-2-semi-bold font-[number:var(--display-2-semi-bold-font-weight)] text-neutral-colors500 text-[length:var(--display-2-semi-bold-font-size)] tracking-[var(--display-2-semi-bold-letter-spacing)] leading-[var(--display-2-semi-bold-line-height)] [font-style:var(--display-2-semi-bold-font-style)]'>
                     Jan 24, 2024
@@ -72,20 +75,24 @@ export function LatestNewsSection() {
                   <span className='font-display-2-semi-bold font-[number:var(--display-2-semi-bold-font-weight)] text-neutral-colors600 text-[length:var(--display-2-semi-bold-font-size)] tracking-[var(--display-2-semi-bold-letter-spacing)] leading-[var(--display-2-semi-bold-line-height)] [font-style:var(--display-2-semi-bold-font-style)]'>
                     {post.category}
                   </span>
-                  <img
+                  <Image
                     className='w-[22.27px] h-px'
                     alt='Blog card details divider'
                     src='/blog-card-details-divider.svg'
+                    width={22}
+                    height={1}
                   />
                   <span className='font-display-2-semi-bold font-[number:var(--display-2-semi-bold-font-weight)] text-neutral-colors500 text-[length:var(--display-2-semi-bold-font-size)] tracking-[var(--display-2-semi-bold-letter-spacing)] leading-[var(--display-2-semi-bold-line-height)] [font-style:var(--display-2-semi-bold-font-style)]'>
                     {post.date}
                   </span>
                 </div>
                 <div className='flex items-start gap-2'>
-                  <img
+                  <Image
                     className='w-[50px] h-[50px] object-cover flex-shrink-0'
                     alt='Blog thumbnail'
                     src={post.thumbnail}
+                    width={50}
+                    height={50}
                   />
                   <h4 className="flex-1 [font-family:'Inter',Helvetica] font-semibold text-neutral-colors600 text-2xl tracking-[0] leading-8">
                     {post.title}

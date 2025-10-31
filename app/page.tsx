@@ -10,7 +10,6 @@ import { LatestNewsSection } from "@/components/home/LatestNewsSection";
 import LatestPropertySection from "@/components/home/LatestPropertySection";
 import RecomandedPropertiesSection from "@/components/home/RecomandedProperties";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
-import SearchBox from "@/components/SearchBox";
 import UniversalSearchForm from "@/components/UniversalSearchForm";
 import { fetchProperties } from "@/lib/wpapi";
 

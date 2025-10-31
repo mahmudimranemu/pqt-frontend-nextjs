@@ -7,7 +7,7 @@ export async function POST(request: Request) {
     console.log("Contact form submission:", body); // Replace with actual sending logic
     // Example: await sendEmail(body); // Implement sendEmail function
     return NextResponse.json({ message: "Message sent successfully" });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to send message" },
       { status: 500 }

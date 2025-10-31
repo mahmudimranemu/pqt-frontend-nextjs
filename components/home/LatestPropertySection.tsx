@@ -1,15 +1,6 @@
 import PropertiesCarousel from "../properties/PropertiesCarousel";
-import PropertyCard from "../properties/PropertyCard";
-import { Button } from "../ui/button";
 
 export default function LatestPropertySection() {
-  const locationTabs = [
-    { label: "All", active: false },
-    { label: "Bodrum", active: false },
-    { label: "Istanbul", active: true },
-    { label: "Antalya", active: false },
-    { label: "Bursa", active: false },
-  ];
   return (
     <section className='flex flex-col items-center gap-12 px-0 py-20'>
       <h2 className="self-stretch [font-family:'Inter',Helvetica] font-bold text-red-800 text-[40px] text-center tracking-[-1.60px] leading-[48.0px]">

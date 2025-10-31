@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -44,10 +45,12 @@ export function ContactCTASection() {
           </Card>
 
           <div className='hidden lg:flex w-full h-[463px] items-center justify-center rounded-[8px_8px_0px_0px] overflow-hidden border border-solid border-[#b3b8c8] shadow-neutral-shadow-02 [background:url(/image-6.png)_50%_50%_/_cover,linear-gradient(0deg,rgba(241,243,247,1)_0%,rgba(241,243,247,1)_100%)]'>
-            <img
+            <Image
               className='w-[66px] h-[66px]'
               alt='Icon square image'
               src='/icon-square-image-8.svg'
+              width={66}
+              height={66}
             />
           </div>
         </div>

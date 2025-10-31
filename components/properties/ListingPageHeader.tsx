@@ -1,6 +1,3 @@
-import { motion } from "framer-motion";
-import SearchBox from "../SearchBox";
-import SearchForm from "../SearchForm";
 import UniversalSearchForm from "../UniversalSearchForm";
 import { fetchProperties } from "@/lib/wpapi";
 

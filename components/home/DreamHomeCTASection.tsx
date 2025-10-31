@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -84,10 +85,12 @@ export default function DreamHomeCTASection() {
                     style={{
                       backgroundImage: `url(${image.src})`,
                     }}>
-                    <img
+                    <Image
                       src={image.src}
                       alt={image.alt}
                       className='w-full h-full object-cover'
+                      width={218}
+                      height={273}
                     />
                   </div>
                 ))}

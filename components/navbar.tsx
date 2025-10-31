@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { CircleDollarSign, Menu, Search, X } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const menuItems = [

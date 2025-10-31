@@ -1,9 +1,7 @@
 // app/search/page.tsx
-import SearchForm from "@/components/SearchForm";
 import SearchResults from "@/components/SearchResults";
 import UniversalSearchForm from "@/components/UniversalSearchForm";
 import { fetchProperties } from "@/lib/wpapi";
-import { Property } from "@/types/property";
 
 export default async function SearchPage() {
   const properties = await fetchProperties();

@@ -33,7 +33,7 @@ export default function ContactForm({
   propertySlug: string;
 }) {
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema as any),
     defaultValues: {
       name: "",
       email: "",
@@ -52,7 +52,7 @@ export default function ContactForm({
       if (!res.ok) throw new Error("Failed to submit");
       toast.success("Your message has been sent!");
       form.reset();
-    } catch (error) {
+    } catch {
       toast.error("Failed to send message. Try again.");
     }
   }

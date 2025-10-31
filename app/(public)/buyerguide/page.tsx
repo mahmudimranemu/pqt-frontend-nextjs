@@ -5,6 +5,7 @@ export default function BuyerGuide() {
     <PageHeader
       title='Buyer Guide'
       backgroundImage='/images/slide1.jpg'
+      description='Your comprehensive guide to buying property in Turkey'
     />
   );
 }

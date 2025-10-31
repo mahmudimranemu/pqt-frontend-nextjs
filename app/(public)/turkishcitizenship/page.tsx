@@ -5,6 +5,7 @@ export default function TurkishCitizenship() {
     <PageHeader
       title='Turkish Citizenship'
       backgroundImage='/images/img3.jpg'
+      description='Turkish Citizenship by Investment Programme'
     />
   );
 }

@@ -5,6 +5,7 @@ export default function ContactPage() {
     <PageHeader
       title='Contact'
       backgroundImage='/images/slide2.jpg'
+      description='Get in touch with our expert team for all your property needs'
     />
   );
 }

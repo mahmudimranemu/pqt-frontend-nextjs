@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { fetchPropertyBySlug } from "@/lib/wpapi";
 
 export async function GET(
-  request: Request,
-  { params }: { params: { slug: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
 ) {
-  const { slug } = params;
+  const { slug } = await params;
   try {
     const property = await fetchPropertyBySlug(slug);
     // Future: if (process.env.DATA_SOURCE === 'db') { const property = await db.properties.findUnique({ where: { slug } }); }

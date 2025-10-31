@@ -18,7 +18,7 @@ export default function SearchResults({ initialProperties }: Props) {
   const [loading, setLoading] = useState(true);
 
   // SAFE PRICE PARSING
-  const getPrice = (meta: any): number => {
+  const getPrice = (meta: Property["property_meta"]): number => {
     const val = meta?.fave_property_price;
     if (typeof val !== "string") return 0;
     return parseFloat(val.replace(/[^0-9.]/g, "")) || 0;

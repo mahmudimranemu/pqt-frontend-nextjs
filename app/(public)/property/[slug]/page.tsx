@@ -1,6 +1,5 @@
 // app/property/[slug]/page.tsx
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { fetchPropertyBySlug } from "@/lib/wpapi";
 import { Metadata } from "next";
 import { Button } from "@/components/ui/button";
@@ -22,7 +21,6 @@ import {
   Sliders,
 } from "lucide-react";
 import Link from "next/link";
-import PropertiesCarousel from "@/components/properties/PropertiesCarousel";
 import PropertyImageSlider from "@/components/properties/property/PropertyImageSlider";
 import ContactForm from "./ContactForm";
 
@@ -66,7 +64,7 @@ export default async function PropertyPage({ params }: Props) {
       `https://propertyquestturkey.com/wp-json/wp/v2/media?include=${ids}&per_page=100`
     );
     if (res.ok) {
-      const media: any[] = await res.json();
+      const media: { source_url: string }[] = await res.json();
       galleryUrls = media.map((m) => m.source_url).filter(Boolean);
     }
   }

@@ -5,6 +5,7 @@ export default function BuyRealEstatePage() {
     <PageHeader
       title='Buy Real Estate'
       backgroundImage='/images/img1.jpg'
+      description='Discover your dream property in Turkey with our expert guidance'
     />
   );
 }

@@ -19,7 +19,7 @@ export async function GET(request: Request) {
     const allProps = await fetchProperties();
 
     // --- SORTING: Only apply if sortParam is a valid SortOption ---
-    let sorted = [...allProps];
+    const sorted = [...allProps];
 
     if (sortParam && sortParam !== "default") {
       const sort = sortParam as SortOption; // safe now

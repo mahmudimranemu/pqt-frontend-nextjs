@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function InvestCTASection() {

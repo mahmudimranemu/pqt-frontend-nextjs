@@ -13,5 +13,5 @@ export interface Property {
   };
   featured_image_url?: string; // Ensure this is included
   gallery_urls?: string[];
-  property_city: string;
+  property_city: string | number[];
 }

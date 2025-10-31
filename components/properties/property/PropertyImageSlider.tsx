@@ -10,8 +10,8 @@ import { useEffect, useState } from "react";
 type LightboxProps = {
   src: string;
   onClose: () => void;
-  onNext: (e: any) => void;
-  onPrev: (e: any) => void;
+  onNext: (e: React.MouseEvent) => void;
+  onPrev: (e: React.MouseEvent) => void;
   hasMultiple?: boolean;
 };
 
@@ -105,12 +105,12 @@ export default function PropertyImageSlider({ images }: { images: string[] }) {
   };
 
   // Handlers for lightbox navigation
-  const lightboxGoToPrevious = (e: any) => {
+  const lightboxGoToPrevious = (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent closing the lightbox
     goToPrevious();
   };
 
-  const lightboxGoToNext = (e: any) => {
+  const lightboxGoToNext = (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent closing the lightbox
     goToNext();
   };
@@ -149,7 +149,6 @@ export default function PropertyImageSlider({ images }: { images: string[] }) {
           alt={`Main image ${currentImageIndex + 1}`}
           fill
           sizes='(max-width: 768px) 100vw, 80vw'
-          objectFit='cover'
           className='object-cover transition-opacity duration-1000'
         />
 

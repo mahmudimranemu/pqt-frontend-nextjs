@@ -20,7 +20,7 @@ export default function HeroSlider() {
     }, intervalDuration);
 
     return () => clearInterval(slideInterval);
-  }, [slides.length]);
+  }, []);
 
   return (
     <div className='relative w-full h-screen overflow-hidden'>

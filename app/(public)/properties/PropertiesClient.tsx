@@ -18,14 +18,14 @@ export default function PropertiesClient({
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
   // Safe parsers
-  const getPrice = (m: any) => {
-    const v = m?.fave_property_price;
+  const getPrice = (e: Property["property_meta"]) => {
+    const v = e?.fave_property_price;
     return typeof v === "string"
       ? parseFloat(v.replace(/[^0-9.]/g, "")) || 0
       : 0;
   };
-  const getBedrooms = (m: any) => {
-    const v = m?.fave_property_bedrooms;
+  const getBedrooms = (e: Property["property_meta"]) => {
+    const v = e?.fave_property_bedrooms;
     return typeof v === "string" ? parseInt(v, 10) || 0 : 0;
   };
 
@@ -70,7 +70,9 @@ export default function PropertiesClient({
       { rootMargin: "300px" }
     );
 
-    loadMoreRef.current && observer.observe(loadMoreRef.current);
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
     return () => observer.disconnect();
   }, [displayed.length, sorted]);
 

@@ -136,10 +136,12 @@ export default function Footer() {
             </h4>
 
             <div className='inline-flex items-center gap-4'>
-              <img
+              <Image
                 className='w-12 h-12'
                 alt='Icon square email'
                 src='/icon-square-email.svg'
+                width={48}
+                height={48}
               />
 
               <div className='inline-flex flex-col items-start justify-center gap-3'>
@@ -156,10 +158,12 @@ export default function Footer() {
             </div>
 
             <div className='inline-flex items-center gap-4'>
-              <img
+              <Image
                 className='w-12 h-12'
                 alt='Icon square phone'
                 src='/icon-square-phone.svg'
+                width={48}
+                height={48}
               />
 
               <div className='inline-flex flex-col items-start justify-center gap-3'>

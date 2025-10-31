@@ -1,7 +1,43 @@
-// lib/wpapi.ts
 import he from "he";
 
 const WP_API_BASE = "https://propertyquestturkey.com/wp-json/wp/v2";
+
+interface WpPost {
+  id: number;
+  title: { rendered: string };
+  slug: string;
+  date: string;
+  featured_media: number;
+  property_city: number[];
+  property_meta: {
+    fave_property_price?: string;
+    fave_property_bedrooms?: string;
+    fave_property_bathrooms?: string;
+    fave_property_size?: string;
+    overview?: string;
+    fave_property_type?: string;
+    fave_property_images?: string[] | null;
+    why_buy_this_property?: string;
+    location_facilities_details?: string;
+    project_facilities_details?: string;
+  };
+  _embedded?: {
+    "wp:featuredmedia"?: {
+      source_url: string;
+    }[];
+  };
+  featured_image_url?: string;
+}
+
+interface WpMedia {
+  id: number;
+  source_url: string;
+}
+
+interface WpCity {
+  id: number;
+  name: string;
+}
 
 // === 1. Fetch ALL properties (for listing) ===
 export async function fetchProperties() {
@@ -9,7 +45,7 @@ export async function fetchProperties() {
     next: { revalidate: 3600 },
   });
   if (!res.ok) throw new Error("Failed");
-  const posts: any[] = await res.json();
+  const posts: WpPost[] = await res.json();
 
   const mediaIds = posts.map((p) => p.featured_media).filter(Boolean);
   const cityIds = posts
@@ -23,7 +59,7 @@ export async function fetchProperties() {
       `${WP_API_BASE}/media?include=${ids}&per_page=100`
     );
     if (mediaRes.ok) {
-      const media: any[] = await mediaRes.json();
+      const media: WpMedia[] = await mediaRes.json();
       media.forEach((m) => mediaMap.set(m.id, m.source_url));
     }
   }
@@ -36,7 +72,7 @@ export async function fetchProperties() {
       `${WP_API_BASE}/property_city?include=${ids}&per_page=100`
     );
     if (cityRes.ok) {
-      const cities: any[] = await cityRes.json();
+      const cities: WpCity[] = await cityRes.json();
       cities.forEach((c) => cityMap.set(c.id, c.name));
     }
   }
@@ -61,7 +97,7 @@ export async function fetchProperties() {
 export async function fetchPropertyBySlug(slug: string) {
   const res = await fetch(`${WP_API_BASE}/properties?slug=${slug}&_embed`);
   if (!res.ok) throw new Error("Property not found");
-  const posts: any[] = await res.json();
+  const posts: WpPost[] = await res.json();
   if (posts.length === 0) throw new Error("Property not found");
 
   const p = posts[0];
