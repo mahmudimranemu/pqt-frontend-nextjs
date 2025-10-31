@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import UniversalSearchForm from "../UniversalSearchForm";
 import { fetchProperties } from "@/lib/wpapi";
 
@@ -12,7 +13,9 @@ export default async function ListingPageHeader() {
       {/* Overlay */}
       <div className='absolute inset-0 bg-black/80'></div>
       <div className='w-full z-10'>
-        <UniversalSearchForm initialProperties={properties} />
+        <Suspense fallback={<div>Loading search form...</div>}>
+          <UniversalSearchForm initialProperties={properties} />
+        </Suspense>
       </div>
     </header>
   );

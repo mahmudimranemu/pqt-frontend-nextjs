@@ -12,6 +12,7 @@ import RecomandedPropertiesSection from "@/components/home/RecomandedProperties"
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import UniversalSearchForm from "@/components/UniversalSearchForm";
 import { fetchProperties } from "@/lib/wpapi";
+import { Suspense } from "react";
 
 export default async function Home() {
   const properties = await fetchProperties();
@@ -22,10 +23,12 @@ export default async function Home() {
         <section className='relative h-screen w-full justify-center'>
           <HeroSlider />
           <div className='lg:max-w-7xl mx-auto'>
-            <UniversalSearchForm
-              initialProperties={properties}
-              compact
-            />
+            <Suspense fallback={<div>Loading search form...</div>}>
+              <UniversalSearchForm
+                initialProperties={properties}
+                compact
+              />
+            </Suspense>
           </div>
         </section>
 

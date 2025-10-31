@@ -8,7 +8,7 @@ interface WpPost {
   slug: string;
   date: string;
   featured_media: number;
-  property_city: number[];
+  property_city: string | number[];
   property_meta: {
     fave_property_price?: string;
     fave_property_bedrooms?: string;
@@ -20,6 +20,7 @@ interface WpPost {
     why_buy_this_property?: string;
     location_facilities_details?: string;
     project_facilities_details?: string;
+    [key: string]: any;
   };
   _embedded?: {
     "wp:featuredmedia"?: {
@@ -49,8 +50,8 @@ export async function fetchProperties() {
 
   const mediaIds = posts.map((p) => p.featured_media).filter(Boolean);
   const cityIds = posts
-    .flatMap((p) => p.property_city || [])
-    .filter((id) => !isNaN(id));
+    .flatMap((p) => (Array.isArray(p.property_city) ? p.property_city : []))
+    .filter((id) => typeof id === "number" && !isNaN(id));
 
   const mediaMap = new Map<number, string>();
   if (mediaIds.length) {
@@ -80,9 +81,11 @@ export async function fetchProperties() {
   return posts.map((p) => {
     p.title.rendered = he.decode(p.title.rendered);
     if (p.property_meta) {
-      Object.keys(p.property_meta).forEach((k) => {
-        if (typeof p.property_meta[k] === "string")
-          p.property_meta[k] = he.decode(p.property_meta[k]);
+      const meta = p.property_meta;
+      (Object.keys(meta) as (keyof typeof meta)[]).forEach((k) => {
+        if (typeof meta[k] === "string") {
+          meta[k] = he.decode(meta[k] as string);
+        }
       });
     }
     p.featured_image_url = mediaMap.get(p.featured_media);
@@ -105,9 +108,11 @@ export async function fetchPropertyBySlug(slug: string) {
   // Decode title + meta
   p.title.rendered = he.decode(p.title.rendered);
   if (p.property_meta) {
-    Object.keys(p.property_meta).forEach((k) => {
-      if (typeof p.property_meta[k] === "string")
-        p.property_meta[k] = he.decode(p.property_meta[k]);
+    const meta = p.property_meta;
+    (Object.keys(meta) as (keyof typeof meta)[]).forEach((k) => {
+      if (typeof meta[k] === "string") {
+        meta[k] = he.decode(meta[k] as string);
+      }
     });
   }
 

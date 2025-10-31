@@ -46,8 +46,12 @@ export default function UniversalSearchForm({
     setMaxPrice(searchParams.get("max-price") || "");
   }, [searchParams]);
 
-  const locations = Array.from(
-    new Set(properties.map((p) => p.property_city))
+  const locations: string[] = Array.from(
+    new Set(
+      properties
+        .map((p) => p.property_city)
+        .filter((city): city is string => typeof city === "string")
+    )
   ).sort();
   const types = Array.from(
     new Set(
@@ -97,7 +101,7 @@ export default function UniversalSearchForm({
                 {locations.map((city) => (
                   <SelectItem
                     key={city}
-                    value={city || "Location"}>
+                    value={city}>
                     {city}
                   </SelectItem>
                 ))}
@@ -180,7 +184,7 @@ export default function UniversalSearchForm({
               {locations.map((city) => (
                 <SelectItem
                   key={city}
-                  value={city || "Location"}>
+                  value={city}>
                   {city}
                 </SelectItem>
               ))}

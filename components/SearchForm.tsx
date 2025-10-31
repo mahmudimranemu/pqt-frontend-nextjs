@@ -42,7 +42,11 @@ export default function SearchForm({ initialProperties }: Props) {
   }, [searchParams]);
 
   const locations = Array.from(
-    new Set(properties.map((p) => p.property_city))
+    new Set(
+      properties
+        .map((p) => p.property_city)
+        .filter((city): city is string => typeof city === "string")
+    )
   ).sort();
   const types = Array.from(
     new Set(

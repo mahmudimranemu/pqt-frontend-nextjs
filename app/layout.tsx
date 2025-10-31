@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { StackProvider, StackTheme } from "@stackframe/stack";
-import { stackClientApp } from "../stack/client";
 import { Inter, Playfair_Display } from "next/font/google";
 import "react-phone-number-input/style.css";
 import "./globals.css";
@@ -31,13 +29,9 @@ export default function RootLayout({
     <html lang='en'>
       <body
         className={`${inter.variable} ${playfairDisplay.variable} antialiased`}>
-        <StackProvider app={stackClientApp}>
-          <StackTheme>
-            <Navbar />
-            {children}
-            <Footer />
-          </StackTheme>
-        </StackProvider>
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );

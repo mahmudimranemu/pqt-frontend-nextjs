@@ -2,6 +2,7 @@
 import SearchResults from "@/components/SearchResults";
 import UniversalSearchForm from "@/components/UniversalSearchForm";
 import { fetchProperties } from "@/lib/wpapi";
+import { Suspense } from "react";
 
 export default async function SearchPage() {
   const properties = await fetchProperties();
@@ -16,7 +17,9 @@ export default async function SearchPage() {
         {/* Overlay */}
         <div className='absolute inset-0 bg-black/80'></div>
         <div className='flex flex-col gap-3 items-end w-full z-10'>
-          <UniversalSearchForm initialProperties={properties} />
+          <Suspense fallback={<div>Loading search form...</div>}>
+            <UniversalSearchForm initialProperties={properties} />
+          </Suspense>
         </div>
       </header>
       <div className='w-full mx-auto px-36'>
@@ -33,7 +36,9 @@ export default async function SearchPage() {
             all the properties for sale.
           </p>
         </div>
-        <SearchResults initialProperties={properties} />
+        <Suspense fallback={<div>Loading search results...</div>}>
+          <SearchResults initialProperties={properties} />
+        </Suspense>
       </div>
     </>
   );
