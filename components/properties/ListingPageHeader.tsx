@@ -9,7 +9,7 @@ export default async function ListingPageHeader() {
       style={{
         backgroundImage: `url('/images/slide1.jpg')`,
       }}
-      className='w-full h-[30vh] bg-cover bg-center items-end flex justify-center relative overflow-hidden'>
+      className='w-full lg:h-[30vh] h-[360px] bg-cover bg-center items-end flex justify-center relative overflow-hidden'>
       {/* Overlay */}
       <div className='absolute inset-0 bg-black/80'></div>
       <div className='w-full z-10'>

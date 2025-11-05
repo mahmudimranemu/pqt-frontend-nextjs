@@ -11,7 +11,7 @@ export default async function PropertiesPage() {
   return (
     <>
       <ListingPageHeader />
-      <div className='w-full px-36 mx-auto'>
+      <div className='w-full lg:px-36 px-6 mx-auto'>
         <div className='py-10'>
           <h1 className='text-3xl font-bold mb-6'>Find Turkish Properties</h1>
           <p>

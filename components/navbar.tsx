@@ -59,12 +59,13 @@ export default function Navbar() {
 
         {open && (
           <div className='absolute top-full left-0 w-full bg-white shadow-md flex flex-col items-start px-6 py-4 space-y-3 md:hidden'>
-            <Link href='/'>Home</Link>
-            <Link href='/buy-real-estate'>Buy Real Estate</Link>
-            <Link href='/turkish-citizenship'>Turkish Citizenship</Link>
-            <Link href='/buyer-guide'>Buyer Guide</Link>
-            <Link href='/about'>About</Link>
-            <Link href='/contact'>Contact</Link>
+            {menuItems.map((menu, index) => (
+              <Link
+                key={index}
+                href={menu.href}>
+                {menu.label}
+              </Link>
+            ))}
           </div>
         )}
       </div>
