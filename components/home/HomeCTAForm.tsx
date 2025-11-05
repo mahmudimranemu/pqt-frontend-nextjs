@@ -3,32 +3,17 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import PhoneNumberInput from "../PhoneNumberInput";
+import SimpleContactForm from "./SimpleContactForm";
 
 export default function HomeCTAForm() {
   return (
     <section className='w-full py-10 bg-zinc-300 flex items-center justify-center'>
-      <div className='w-7xl flex flex-col md:flex-row items-center justify-between p-4 space-y-3 md:space-y-0 md:space-x-4'>
-        <p className='text-zinc-900 font-bold uppercase'>Contact with us</p>
-        <Input
-          type='text'
-          placeholder='Enter your name'
-          className='bg-white rounded-md h-12 text-zinc-900 shadow-md'
-        />
-        <div className='bg-white py-1.5 px-3  h-12 flex items-center rounded-md w-full md:w-auto text-zinc-900 shadow-md'>
-          <PhoneNumberInput />
+      <div className='w-7xl flex flex-col md:flex-row items-center justify-center p-4 space-y-3 md:space-y-0 md:space-x-4'>
+        <div className='flex flex-col gap-0'>
+          <p className='text-zinc-900 font-bold uppercase'>Contact</p>
+          <p className='text-zinc-900 font-bold uppercase'>with us</p>
         </div>
-
-        <Input
-          type='email'
-          placeholder='Enter your email'
-          className='bg-white h-12 text-zinc-900 shadow-md'
-        />
-
-        <Button
-          size='lg'
-          className='bg-red-600 hover:bg-red-700 text-white h-12 cursor-pointer'>
-          Contact
-        </Button>
+        <SimpleContactForm />
       </div>
     </section>
   );

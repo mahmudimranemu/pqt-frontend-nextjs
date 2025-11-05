@@ -44,9 +44,9 @@ export default function Navbar() {
           </Link>
           <Link href='/'>Login</Link>
           <Link href='/'>Register</Link>
-          <Link href='/'>
+          {/* <Link href='/'>
             <CircleDollarSign />
-          </Link>
+          </Link> */}
         </div>
 
         {/* Mobile menu */}

@@ -4,6 +4,7 @@ import "react-phone-number-input/style.css";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfairDisplay.variable} antialiased`}>
         <Navbar />
         {children}
+        <Toaster />
         <Footer />
       </body>
     </html>
