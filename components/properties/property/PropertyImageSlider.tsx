@@ -141,7 +141,7 @@ export default function PropertyImageSlider({ images }: { images: string[] }) {
     <>
       {/* 1. Main Image Slider */}
       <div
-        className='relative w-full h-[800px] bg-gray-200 overflow-hidden flex items-center justify-center cursor-pointer'
+        className='relative w-full h-[400px] lg:h-[800px] bg-gray-200 overflow-hidden flex items-center justify-center cursor-pointer'
         onClick={openLightbox} // CLICKABLE AREA
       >
         <Image
@@ -182,9 +182,9 @@ export default function PropertyImageSlider({ images }: { images: string[] }) {
             key={index}
             // ... (Thumbnail classes and onClick logic) ...
             className={cn(
-              "relative w-full h-20 cursor-pointer overflow-hidden border-2 transition-all duration-200 opacity-50",
+              "relative w-full h-10 lg:h-20 cursor-pointer overflow-hidden border-2 transition-all duration-200 opacity-50",
               currentImageIndex === index
-                ? "border-blue-500 shadow-md rounded-md opacity-100"
+                ? "border-blue-500 shadow-md lg:rounded-md opacity-100"
                 : "border-transparent hover:border-gray-300"
             )}
             onClick={() => selectImage(index)}>
@@ -193,8 +193,7 @@ export default function PropertyImageSlider({ images }: { images: string[] }) {
               alt={`Thumbnail ${index + 1}`}
               fill
               sizes='100px'
-              objectFit='cover'
-              className='brightness-90 hover:brightness-100 transition-brightness duration-200'
+              className=' object-cover h-[100px] brightness-90 hover:brightness-100 transition-brightness duration-200'
             />
           </div>
         ))}

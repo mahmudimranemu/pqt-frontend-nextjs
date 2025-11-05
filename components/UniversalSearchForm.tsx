@@ -86,83 +86,87 @@ export default function UniversalSearchForm({
 
   if (compact) {
     return (
-      <div className='absolute bottom-10 left-1/2 -translate-x-1/2 w-[90%] max-w-2xl bg-white/90 backdrop-blur-md shadow-lg rounded-2xl flex flex-col md:flex-row items-center justify-between p-4 space-y-3 md:space-y-0 md:space-x-4'>
+      <div className='absolute bottom-10 left-1/2 -translate-x-1/2 w-[80%] max-w-2xl bg-white/90 backdrop-blur-md shadow-lg rounded-2xl flex flex-col md:flex-row items-center justify-between p-4 space-y-3 md:space-y-0 md:space-x-4'>
         <form
           onSubmit={handleSearch}
-          className='flex gap-2 mx-auto'>
-          <div className='bg-white rounded-lg'>
-            <Select
-              value={location}
-              onValueChange={setLocation}>
-              <SelectTrigger className='px-8 py-6 text-lg'>
-                <SelectValue placeholder='Location' />
-              </SelectTrigger>
-              <SelectContent>
-                {locations.map((city) => (
-                  <SelectItem
-                    key={city}
-                    value={city}>
-                    {city}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div className='bg-white rounded-lg'>
-            <Select
-              value={bedrooms}
-              onValueChange={setBedrooms}>
-              <SelectTrigger className='px-8 py-6 text-lg'>
-                <SelectValue placeholder='Beds' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value='1'>1</SelectItem>
-                <SelectItem value='2'>2</SelectItem>
-                <SelectItem value='3'>3</SelectItem>
-                <SelectItem value='4'>4+</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className='bg-white rounded-lg'>
-            <Select
-              value={minPrice}
-              onValueChange={setMinPrice}>
-              <SelectTrigger className='px-8 py-6 text-lg'>
-                <SelectValue placeholder='Min Price' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value='0'>$0k</SelectItem>
-                <SelectItem value='50000'>$50k</SelectItem>
-                <SelectItem value='100000'>$100k</SelectItem>
-                <SelectItem value='150000'>$150k</SelectItem>
-                <SelectItem value='200000'>$200k</SelectItem>
-                <SelectItem value='250000'>$250k</SelectItem>
-                <SelectItem value='300000'>$300k</SelectItem>
-                <SelectItem value='400000'>$400k</SelectItem>
-                <SelectItem value='500000'>$500k</SelectItem>
-                <SelectItem value='600000'>$600k</SelectItem>
-                <SelectItem value='700000'>$700k</SelectItem>
-                <SelectItem value='1000000'>$1000k</SelectItem>
-                <SelectItem value='1500000'>$1500k</SelectItem>
-                <SelectItem value='2000000'>$2000k</SelectItem>
-                <SelectItem value='5000000'>$5000k</SelectItem>
-              </SelectContent>
-            </Select>
-            {/* <Input
+          className='flex flex-col lg:flex-row gap-2 mx-auto'>
+          <div className='flex gap-2'>
+            <div className='bg-white rounded-lg'>
+              <Select
+                value={location}
+                onValueChange={setLocation}>
+                <SelectTrigger className='lg:px-8 py-6 text-lg'>
+                  <SelectValue placeholder='Location' />
+                </SelectTrigger>
+                <SelectContent>
+                  {locations.map((city) => (
+                    <SelectItem
+                      key={city}
+                      value={city}>
+                      {city}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className='bg-white rounded-lg'>
+              <Select
+                value={bedrooms}
+                onValueChange={setBedrooms}>
+                <SelectTrigger className='lg:px-8 py-6 text-lg'>
+                  <SelectValue placeholder='Beds' />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value='1'>1</SelectItem>
+                  <SelectItem value='2'>2</SelectItem>
+                  <SelectItem value='3'>3</SelectItem>
+                  <SelectItem value='4'>4+</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className='bg-white rounded-lg'>
+              <Select
+                value={minPrice}
+                onValueChange={setMinPrice}>
+                <SelectTrigger className='lg:px-8 py-6 text-lg'>
+                  <SelectValue placeholder='Min Price' />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value='0'>$0k</SelectItem>
+                  <SelectItem value='50000'>$50k</SelectItem>
+                  <SelectItem value='100000'>$100k</SelectItem>
+                  <SelectItem value='150000'>$150k</SelectItem>
+                  <SelectItem value='200000'>$200k</SelectItem>
+                  <SelectItem value='250000'>$250k</SelectItem>
+                  <SelectItem value='300000'>$300k</SelectItem>
+                  <SelectItem value='400000'>$400k</SelectItem>
+                  <SelectItem value='500000'>$500k</SelectItem>
+                  <SelectItem value='600000'>$600k</SelectItem>
+                  <SelectItem value='700000'>$700k</SelectItem>
+                  <SelectItem value='1000000'>$1000k</SelectItem>
+                  <SelectItem value='1500000'>$1500k</SelectItem>
+                  <SelectItem value='2000000'>$2000k</SelectItem>
+                  <SelectItem value='5000000'>$5000k</SelectItem>
+                </SelectContent>
+              </Select>
+              {/* <Input
             type='number'
             placeholder='Min Price'
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
           /> */}
+            </div>
           </div>
 
-          <Button
-            type='submit'
-            size='sm'
-            className='flex-1 py-6 px-8 text-lg cursor-pointer'
-            disabled={isLoading}>
-            Search
-          </Button>
+          <div>
+            <Button
+              type='submit'
+              size='sm'
+              className='lg:flex-1 w-full py-6 px-8 text-lg cursor-pointer'
+              disabled={isLoading}>
+              Search
+            </Button>
+          </div>
         </form>
       </div>
     );

@@ -18,7 +18,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className='fixed top-10 left-0 z-50 w-full'>
+    <nav className='fixed top-10 left-0 px-6 lg:p-0 z-50 w-full'>
       <div className='max-w-7xl mx-auto flex items-center justify-between px-6 py-3 bg-white/68 backdrop-blur-md border-b border-gray-100/70 rounded-full shadow-2xl'>
         <Link href='/'>
           <Image

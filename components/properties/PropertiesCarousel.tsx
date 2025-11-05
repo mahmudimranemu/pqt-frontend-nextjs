@@ -12,7 +12,7 @@ export default async function PropertiesCarousel() {
   const properties = await fetchProperties();
 
   return (
-    <div className='flex w-7xl justify-between gap-4'>
+    <div className='flex lg:w-7xl w-[400px] justify-between gap-4'>
       <Carousel
         opts={{
           align: "start",
