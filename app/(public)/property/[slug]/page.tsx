@@ -14,15 +14,17 @@ import {
   Bath,
   Bed,
   Building,
+  Heart,
   Info,
   MapPin,
   Newspaper,
   RulerDimensionLine,
+  Share,
   Sliders,
 } from "lucide-react";
 import Link from "next/link";
 import PropertyImageSlider from "@/components/properties/property/PropertyImageSlider";
-import ContactForm from "./ContactForm";
+import FullContactForm from "../../contact/ContactForm";
 
 interface Props {
   params: { slug: string };
@@ -92,13 +94,13 @@ export default async function PropertyPage({ params }: Props) {
       {/* PROPERTY INFO */}
       <div className='max-w-7xl flex flex-col mx-auto px-4 py-6 sm:px-6 lg:px-8'>
         <div className='flex gap-6'>
-          <main className='lg:w-4/5'>
+          <main className='lg:w-4/6'>
             <div className='flex flex-col gap-6'>
-              <h1 className='font-extrabold text-dark-blue text-4xl tracking-[-1.08px] leading-9'>
+              <h1 className='font-extrabold text-dark-blue lg:text-4xl text-3xl tracking-[-1.08px] leading-8'>
                 {property.title.rendered}
               </h1>
               <div className='flex justify-between'>
-                <div className='flex gap-6'>
+                <div className='flex flex-col lg:flex-row gap-1 lg:gap-6'>
                   <p className='text-text text-2xl'>
                     Price:
                     <span className='text-primary font-bold'>
@@ -106,22 +108,26 @@ export default async function PropertyPage({ params }: Props) {
                       {property.property_meta?.fave_property_price || "Contact"}
                     </span>
                   </p>
-                  <p className='text-text text-2xl'>
+                  <p className='text-text lg:text-2xl'>
                     Ref:
                     <span className='text-secondary font-normal'>PQTR1085</span>
                   </p>
                 </div>
 
                 <div className='flex gap-2'>
-                  <Button>Share</Button>
-                  <Button>Love</Button>
+                  <Button className='bg-white border hover:text-primary hover:bg-white hover:shadow cursor-pointer text-text'>
+                    <Share />
+                  </Button>
+                  <Button className='bg-white border hover:text-primary hover:bg-white hover:shadow cursor-pointer text-text'>
+                    <Heart />
+                  </Button>
                 </div>
               </div>
               <div className='flex flex-col gap-7'>
                 <Card className='w-full'>
                   <CardHeader className='flex items-center text-dark-blue'>
                     <Sliders />{" "}
-                    <h2 className='text-2xl font-semibold uppercase tracking-tighter'>
+                    <h2 className='lg:text-2xl text-xl font-semibold uppercase tracking-tighter'>
                       Project Features
                     </h2>
                   </CardHeader>
@@ -188,10 +194,15 @@ export default async function PropertyPage({ params }: Props) {
                     </div>
                   </CardContent>
                 </Card>
+                <Card className='lg:hidden'>
+                  <CardContent>
+                    <FullContactForm />
+                  </CardContent>
+                </Card>
                 <Card className='w-full'>
                   <CardHeader className='flex items-center text-dark-blue'>
                     <Info />
-                    <h2 className='text-2xl font-semibold uppercase tracking-tighter'>
+                    <h2 className='lg:text-2xl text-xl font-semibold uppercase tracking-tighter'>
                       Why buy this Property
                     </h2>
                   </CardHeader>
@@ -206,7 +217,7 @@ export default async function PropertyPage({ params }: Props) {
                 <Card className='w-full'>
                   <CardHeader className='flex items-center text-dark-blue'>
                     <Newspaper />
-                    <h2 className='text-2xl font-semibold uppercase tracking-tighter'>
+                    <h2 className='lg:text-2xl text-xl font-semibold uppercase tracking-tighter'>
                       Project details and facilities
                     </h2>
                   </CardHeader>
@@ -226,8 +237,17 @@ export default async function PropertyPage({ params }: Props) {
               </div>
             </div>
           </main>
-          <aside className='lg:w-1/5'>
-            <ContactForm propertySlug={property.slug} />
+          <aside className='lg:w-1/3 hidden lg:block sticky top-32 self-start'>
+            <Card>
+              <CardHeader>
+                <h2 className='font-semibold text-xl text-center'>
+                  Contact Property Quest Turkey
+                </h2>
+              </CardHeader>
+              <CardContent>
+                <FullContactForm />
+              </CardContent>
+            </Card>
           </aside>
         </div>
         <div className='py-20'>

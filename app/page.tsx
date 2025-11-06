@@ -20,7 +20,7 @@ export default async function Home() {
     <>
       <main>
         {/* Hero section */}
-        <section className='relative h-screen w-full justify-center'>
+        <section className='relative lg:h-screen h-[500px] w-full justify-center'>
           <HeroSlider />
           <div className='lg:max-w-7xl mx-auto'>
             <Suspense fallback={<div>Loading search form...</div>}>

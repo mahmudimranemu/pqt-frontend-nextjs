@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 export function ContactCTASection() {
   return (
     <section className='flex flex-col w-full items-start gap-2.5 px-0 py-20 relative'>
-      <div className='relative w-7xl mx-auto'>
+      <div className='relative lg:w-7xl mx-auto'>
         <div className='grid grid-cols-1 lg:grid-cols-[1fr_369px] gap-0 relative'>
           <Card className='bg-dark-red rounded-lg overflow-hidden border-0 lg:rounded-r-none'>
             <CardContent className='flex flex-col items-start gap-6 pl-20 pr-[167px] py-[100px]'>

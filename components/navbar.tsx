@@ -18,7 +18,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className='fixed top-10 left-0 z-50 w-full'>
+    <nav className='fixed top-10 left-0 px-6 lg:p-0 z-50 w-full'>
       <div className='max-w-7xl mx-auto flex items-center justify-between px-6 py-3 bg-white/68 backdrop-blur-md border-b border-gray-100/70 rounded-full shadow-2xl'>
         <Link href='/'>
           <Image
@@ -44,9 +44,9 @@ export default function Navbar() {
           </Link>
           <Link href='/'>Login</Link>
           <Link href='/'>Register</Link>
-          <Link href='/'>
+          {/* <Link href='/'>
             <CircleDollarSign />
-          </Link>
+          </Link> */}
         </div>
 
         {/* Mobile menu */}
@@ -59,12 +59,13 @@ export default function Navbar() {
 
         {open && (
           <div className='absolute top-full left-0 w-full bg-white shadow-md flex flex-col items-start px-6 py-4 space-y-3 md:hidden'>
-            <Link href='/'>Home</Link>
-            <Link href='/buy-real-estate'>Buy Real Estate</Link>
-            <Link href='/turkish-citizenship'>Turkish Citizenship</Link>
-            <Link href='/buyer-guide'>Buyer Guide</Link>
-            <Link href='/about'>About</Link>
-            <Link href='/contact'>Contact</Link>
+            {menuItems.map((menu, index) => (
+              <Link
+                key={index}
+                href={menu.href}>
+                {menu.label}
+              </Link>
+            ))}
           </div>
         )}
       </div>

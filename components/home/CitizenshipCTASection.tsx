@@ -13,8 +13,8 @@ export default function CitizenshipCTASection() {
           initial={{ opacity: 0, y: 40 }} // start invisible & moved down
           animate={{ opacity: 1, y: 0 }} // fade in & move up
           transition={{ duration: 0.6, ease: "easeOut" }} // smooth ease
-          className='relative w-4/5 h-[520] p-6 bg-[url("/images/turkey-flag.jpg")] bg-cover bg-center rounded-lg'>
-          <Card className='w-xl p-8 py-8 absolute -right-1/4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm shadow-lg'>
+          className='relative lg:w-4/5 w-full h-[520] p-6 bg-[url("/images/turkey-flag.jpg")] bg-cover bg-center rounded-lg'>
+          <Card className='w-xl p-8 py-8 absolute lg:-right-1/4 lg:top-1/2 lg:-translate-y-1/2 bg-white/90 backdrop-blur-sm shadow-lg'>
             <CardHeader className='gap-0'>
               <h2 className='font-extrabold text-[40px] tracking-tight leading-tight text-red-800'>
                 Turkish Citizenship
@@ -47,7 +47,7 @@ export default function CitizenshipCTASection() {
             </CardFooter>
           </Card>
         </motion.div>
-        <div className='w-1/5'></div>
+        <div className='w-1/5 hidden lg:block'></div>
       </div>
     </section>
   );
