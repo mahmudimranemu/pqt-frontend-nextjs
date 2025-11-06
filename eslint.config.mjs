@@ -12,6 +12,7 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
+    // The existing 'ignores' object...
     ignores: [
       "node_modules/**",
       ".next/**",
@@ -20,12 +21,13 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    // ...and merge the 'rules' you had in module.exports here
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
 ];
 
-module.exports = {
-  // ...
-  rules: {
-    "@typescript-eslint/no-explicit-any": "off",
-  },
-};
+// Use only the ESM export
 export default eslintConfig;
