@@ -22,10 +22,15 @@ export default function SimpleContactForm() {
 
   const onSubmit = async (data: SimpleContactFormData) => {
     try {
+      const submitData = {
+        ...data,
+        pageUrl: window.location.href, // Capture current URL
+      };
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(submitData),
       });
 
       if (!response.ok) {

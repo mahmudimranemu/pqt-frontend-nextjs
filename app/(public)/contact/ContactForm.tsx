@@ -2,29 +2,50 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { fullContactSchema, FullContactFormData } from "@/lib/contactSchema";
+import {
+  fullContactSchema,
+  FullContactFormData,
+  subjectOptions,
+} from "@/lib/contactSchema";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function FullContactForm() {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FullContactFormData>({
     resolver: zodResolver(fullContactSchema as any),
   });
 
+  const selectedSubject = watch("subject"); // Watch for display in placeholder
+
   const onSubmit = async (data: FullContactFormData) => {
     try {
+      const submitData = {
+        ...data,
+        pageUrl: window.location.href, // Capture current URL
+      };
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(submitData),
       });
 
       if (!response.ok) {
@@ -85,12 +106,27 @@ export default function FullContactForm() {
         </div>
       </div>
       <div>
-        <Input
-          id='subject'
-          {...register("subject")}
-          placeholder='Subject'
-          className='border px-4 py-6 w-full'
-        />
+        <Select
+          onValueChange={(value) =>
+            setValue("subject", value as FullContactFormData["subject"])
+          } // Update form value
+          value={selectedSubject} // Controlled value
+        >
+          <SelectTrigger className='w-full px-4 py-6'>
+            <SelectValue placeholder='Select a subject' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {subjectOptions.map((option) => (
+                <SelectItem
+                  key={option}
+                  value={option}>
+                  {option}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
         {errors.subject && (
           <p className='text-red-500'>{errors.subject.message}</p>
         )}

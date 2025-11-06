@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     }
 
     const data = parsedData.data;
-    const { name, email, phone } = data;
+    const { name, email, phone, pageUrl } = data;
     const subject = "subject" in data ? data.subject : undefined;
     const body = "body" in data ? data.body : undefined;
 
@@ -49,6 +49,7 @@ Below are the details:</p>
         Phone: <strong>${phone}</strong></p>
         <p>${subject ? `Subject: ${subject}` : ""}</p>
         <p>${body ? `Message: ${body}` : ""}</p>
+        <p>${pageUrl ? `Submitted from: ${pageUrl}` : ""}</p>
         <p>
       Reply to this email to contact the lead directly, or log in to the admin panel for more information.<br>
       Site: <a href="https://www.propertyquestturkey.com">propertyquestturkey.com</a>

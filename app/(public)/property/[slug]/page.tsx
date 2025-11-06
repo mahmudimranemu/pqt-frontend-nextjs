@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import PropertyImageSlider from "@/components/properties/property/PropertyImageSlider";
-import ContactForm from "./ContactForm";
+import FullContactForm from "../../contact/ContactForm";
 
 interface Props {
   params: { slug: string };
@@ -94,7 +94,7 @@ export default async function PropertyPage({ params }: Props) {
       {/* PROPERTY INFO */}
       <div className='max-w-7xl flex flex-col mx-auto px-4 py-6 sm:px-6 lg:px-8'>
         <div className='flex gap-6'>
-          <main className='lg:w-4/5'>
+          <main className='lg:w-4/6'>
             <div className='flex flex-col gap-6'>
               <h1 className='font-extrabold text-dark-blue lg:text-4xl text-3xl tracking-[-1.08px] leading-8'>
                 {property.title.rendered}
@@ -196,7 +196,7 @@ export default async function PropertyPage({ params }: Props) {
                 </Card>
                 <Card className='lg:hidden'>
                   <CardContent>
-                    <ContactForm propertySlug={property.slug} />
+                    <FullContactForm />
                   </CardContent>
                 </Card>
                 <Card className='w-full'>
@@ -237,8 +237,17 @@ export default async function PropertyPage({ params }: Props) {
               </div>
             </div>
           </main>
-          <aside className='lg:w-1/5 hidden lg:block'>
-            <ContactForm propertySlug={property.slug} />
+          <aside className='lg:w-1/3 hidden lg:block sticky top-32 self-start'>
+            <Card>
+              <CardHeader>
+                <h2 className='font-semibold text-xl text-center'>
+                  Contact Property Quest Turkey
+                </h2>
+              </CardHeader>
+              <CardContent>
+                <FullContactForm />
+              </CardContent>
+            </Card>
           </aside>
         </div>
         <div className='py-20'>
