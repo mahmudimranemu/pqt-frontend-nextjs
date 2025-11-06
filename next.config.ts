@@ -1,15 +1,11 @@
 import type { NextConfig } from "next";
 
-module.exports = {
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       new URL("https://propertyquestturkey.com/wp-content/uploads/**"),
     ],
   },
-};
-
-const nextConfig: NextConfig = {
-  /* config options here */
 };
 
 export default nextConfig;
