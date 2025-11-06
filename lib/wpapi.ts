@@ -2,6 +2,7 @@ import he from "he";
 
 const WP_API_BASE = "https://propertyquestturkey.com/wp-json/wp/v2";
 
+// Type definitions (omitted for brevity in analysis, but kept in code)
 interface WpPost {
   id: number;
   title: { rendered: string };
@@ -42,10 +43,11 @@ interface WpCity {
 
 // === 1. Fetch ALL properties (for listing) ===
 export async function fetchProperties() {
+  // Caching applied to main list
   const res = await fetch(`${WP_API_BASE}/properties?per_page=100`, {
     next: { revalidate: 3600 },
   });
-  if (!res.ok) throw new Error("Failed");
+  if (!res.ok) throw new Error("Failed to fetch properties list");
   const posts: WpPost[] = await res.json();
 
   const mediaIds = posts.map((p) => p.featured_media).filter(Boolean);
@@ -57,7 +59,9 @@ export async function fetchProperties() {
   if (mediaIds.length) {
     const ids = [...new Set(mediaIds)].join(",");
     const mediaRes = await fetch(
-      `${WP_API_BASE}/media?include=${ids}&per_page=100`
+      `${WP_API_BASE}/media?include=${ids}&per_page=100`,
+      // FIX: Apply caching to media fetch
+      { next: { revalidate: 3600 } }
     );
     if (mediaRes.ok) {
       const media: WpMedia[] = await mediaRes.json();
@@ -70,7 +74,9 @@ export async function fetchProperties() {
     const uniqueIds = [...new Set(cityIds)];
     const ids = uniqueIds.join(",");
     const cityRes = await fetch(
-      `${WP_API_BASE}/property_city?include=${ids}&per_page=100`
+      `${WP_API_BASE}/property_city?include=${ids}&per_page=100`,
+      // FIX: Apply caching to city taxonomy fetch
+      { next: { revalidate: 3600 } }
     );
     if (cityRes.ok) {
       const cities: WpCity[] = await cityRes.json();
@@ -98,7 +104,10 @@ export async function fetchProperties() {
 
 // === 2. Fetch SINGLE property by slug ===
 export async function fetchPropertyBySlug(slug: string) {
-  const res = await fetch(`${WP_API_BASE}/properties?slug=${slug}&_embed`);
+  // Best practice: Apply caching to single-property lookups too
+  const res = await fetch(`${WP_API_BASE}/properties?slug=${slug}&_embed`, {
+    next: { revalidate: 3600 },
+  });
   if (!res.ok) throw new Error("Property not found");
   const posts: WpPost[] = await res.json();
   if (posts.length === 0) throw new Error("Property not found");
@@ -122,7 +131,10 @@ export async function fetchPropertyBySlug(slug: string) {
   // City from property_city array
   const cityId = Array.isArray(p.property_city) ? p.property_city[0] : null;
   if (cityId) {
-    const cityRes = await fetch(`${WP_API_BASE}/property_city/${cityId}`);
+    // Best practice: Apply caching to city detail fetch
+    const cityRes = await fetch(`${WP_API_BASE}/property_city/${cityId}`, {
+      next: { revalidate: 3600 },
+    });
     if (cityRes.ok) {
       const city = await cityRes.json();
       p.property_city = city.name;
